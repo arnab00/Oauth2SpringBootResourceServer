@@ -37,7 +37,7 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
 
 	@Autowired
 	RestTemplate restTemplate;
-	
+
 	@Value("${authorization.server.token.key.url}")
 	String tokenKeyURL;
 
@@ -52,13 +52,13 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
 	public TokenStore tokenStore() throws IOException {
 		return new JwtTokenStore(accessTokenConverter());
 	}
-	
-    @Bean
-    @Primary
-    public DefaultTokenServices tokenServices() throws IOException {
-        DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
-        defaultTokenServices.setTokenStore(tokenStore());
-        return defaultTokenServices;
-    }
+
+	@Bean
+	@Primary
+	public DefaultTokenServices tokenServices() throws IOException {
+		DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
+		defaultTokenServices.setTokenStore(tokenStore());
+		return defaultTokenServices;
+	}
 
 }
